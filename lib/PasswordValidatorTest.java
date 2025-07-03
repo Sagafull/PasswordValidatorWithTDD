@@ -76,6 +76,13 @@ public class PasswordValidatorTest{
             System.out.println("Test Case 10 FAILED: Expected INVALID but got " + result10);
         }
 
+        PasswordStrength result11 = PasswordValidator.validate("12345678A@");
+        if (result11 == PasswordStrength.STRONG) {
+            System.out.println("Test Case 11 Passed: 8 digits or more with upper or lowercase and Special Character");
+        } else {
+            System.out.println("Test Case 11 FAILED: Expected STRONG but got " + result11);
+        }
+
 
 
         System.out.println("--------------------------------");
