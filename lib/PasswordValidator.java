@@ -44,7 +44,7 @@ public class PasswordValidator {
          if(password.matches(".*[A-Z].*") && password.matches(".*[a-z].*"))
          strength = PasswordStrength.STRONG;
 
-         if((password.matches(".*[A-Z].*") || password.matches(".*[a-z].*")) && (password.matches(".*.*")))
+         if((password.matches(".*[A-Z].*") || password.matches(".*[a-z].*")) && (password.matches(".*\\W.*")))
          strength = PasswordStrength.STRONG;
 
          if(count < 8)
