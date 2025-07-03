@@ -1,19 +1,62 @@
 package lib;
+import java.lang.*;
+
 
 public class PasswordValidator {
 
     /**
-     * คุณจะต้องเขียน Javadoc ที่สมบูรณ์ที่นี่ในอนาคต
-     * เพื่ออธิบายกฎการทำงานของเมธอด
+     * @param password in string form user.
+     * @return PasswordStrength describe how strong password form user is.
      */
-    // TODO: แก้ไข return type ของเมธอดนี้ให้ถูกต้อง
-    public static void validate(String password) { // Function Type ให้เป็น PasswordStrength 
+    
+     public static PasswordStrength validate(String password) { 
         
         // ส่วนของ Implementation ที่คุณต้องเขียน
         // ...
+         
+        int minLength = 8; 
+        PasswordStrength strength = null;
+        int count = 0;
+
         
-        int minLength = 8 // TODO: มีอะไรขาดหายไปที่บรรทัดนี้?
+        for(int i = 0 ; i < password.length() ; i++){
+            if(Character.isDigit(password.charAt(i)))
+            count++;
+        }
+
+
+
+         if( password.length() < minLength )
+         strength = PasswordStrength.INVALID;
         
-        return null ; // TODO: การคืนค่านี้ถูกต้องหรือไม่?
+         if(password.length() >= minLength)
+         strength = PasswordStrength.WEAK;
+
+         if(password.matches(".*[A-Z].*"))
+         strength = PasswordStrength.MEDIUM;
+         
+         if(password.matches(".*[a-z].*"))
+         strength = PasswordStrength.MEDIUM;
+
+         if(password.matches(".*[A-Z].*") && password.matches(".*[a-z].*"))
+         strength = PasswordStrength.STRONG;
+
+         if(password.matches(".*[A-Z].*") && password.matches(".*[a-z].*"))
+         strength = PasswordStrength.STRONG;
+
+         if((password.matches(".*[A-Z].*") || password.matches(".*[a-z].*")) && (password.matches(".*.*")))
+         strength = PasswordStrength.STRONG;
+
+         if(count < 8)
+         strength = PasswordStrength.INVALID;
+
+         if(password.matches(".*\s.*"))
+         strength = PasswordStrength.INVALID;
+
+         if(password == null)
+         strength = PasswordStrength.INVALID;
+         
+         
+          return strength ;
     }
 }
